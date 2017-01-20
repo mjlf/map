@@ -1,0 +1,84 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+        body, html{width: 100%;height: 100%;margin:0;font-family:"微软雅黑";}
+        #allmap{height:1000px;width:100%;}
+        #r-result{width:100%; font-size:14px;}
+    </style>
+    <script src="../js/jquery.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=NhyogeLm7ljcGBn1E62vGmwyPXT5okqY"></script>
+    <title>城市名定位</title>
+</head>
+<body>
+<div id="allmap"></div>
+<div id="r-result">
+    经度: <input id="longitude" type="text" style="width:100px; margin-right:10px;" />
+    纬度: <input id="latitude" type="text" style="width:100px; margin-right:10px;" />
+    <input type="button" value="查询" onclick="theLocation()" />
+</div>
+</body>
+</html>
+
+
+<script type="text/javascript">
+    // 百度地图API功能
+    var map = new BMap.Map("allmap");
+    map.centerAndZoom(new BMap.Point(118.04315584918619,29.81120325650112),25);
+    map.enableScrollWheelZoom(true);
+
+    $.getJSON("../json/location.json", function(data){
+
+
+//        var point = [];
+
+        $.each(data, function(infoIndex, info){
+
+            var sContent =
+                    "<h4 style='margin:0 0 5px 0;padding:0.2em 0'>"+info['name']+"</h4>" +
+                    "<img style='float:right;margin:4px' id='imgDemo' src='../picture/"+info['name'] +".jpg"+ "' width='300' height='256' title="+info['name']+">" +
+                    "<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>齐云山"+info['name']+"</p>" +
+                    "</div>";
+
+            var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+
+            var longitude = info['longitude'];
+            var altitude = info['altitude'];
+
+            var new_point = new BMap.Point(longitude, altitude);
+//            point.push(new_point);
+            var marker = new BMap.Marker(new_point);  // 创建标注
+            map.addOverlay(marker);// 将标注添加到地图中
+
+
+            marker.addEventListener("click", function(){
+                this.openInfoWindow(infoWindow);
+//                图片加载完毕重绘infowindow
+//                document.getElementById('imgDemo').onload = function (){
+//                    infoWindow.redraw();   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
+//                }
+            });
+
+            var label = new BMap.Label(info['name'] ,{offset:new BMap.Size(20,0)});
+            label.setStyle({ color : "red", fontSize : "12px",  border : "none", background : "#F5F3F0"});
+            marker.setLabel(label);
+            marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+        });
+
+//        var polyline = new BMap.Polyline(point, {strokeColor:"blue", strokeWeight:2, strokeOpacity:0.5});   //创建折线
+
+//        map.addOverlay(polyline);
+    });
+
+    // 用经纬度设置地图中心点
+    function theLocation(){
+        if(document.getElementById("longitude").value != "" && document.getElementById("latitude").value != ""){
+            map.clearOverlays();
+            var new_point = new BMap.Point(document.getElementById("longitude").value,document.getElementById("latitude").value);
+            var marker = new BMap.Marker(new_point);  // 创建标注
+            map.addOverlay(marker);              // 将标注添加到地图中
+            map.panTo(new_point);
+        }
+    }
+</script>

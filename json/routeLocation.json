@@ -1,0 +1,338 @@
+[
+  {
+    "latitude": 29.81210464126319,
+    "name": "43太素宫",
+    "icon": "../png/6.png",
+    "index": 0,
+    "desc": "太素宫",
+    "longitude": 118.04384031366727
+  },
+  {
+    "latitude": 29.812070459086893,
+    "name": "42香炉峰真正的",
+    "icon": "../png/5.png",
+    "index": 1,
+    "desc": "香炉峰真正的",
+    "longitude": 118.04410307381814
+  },
+  {
+    "latitude": 29.811679250694084,
+    "name": "41真武殿",
+    "icon": "../png/4.png",
+    "index": 2,
+    "desc": "真武殿",
+    "longitude": 118.04414587957814
+  },
+  {
+    "latitude": 29.81149206423784,
+    "name": "40涌泉",
+    "icon": "../png/3.png",
+    "index": 3,
+    "desc": "涌泉",
+    "longitude": 118.0447926415738
+  },
+  {
+    "latitude": 29.81166509995835,
+    "name": "39胡伯阳房",
+    "icon": "../png/2.png",
+    "index": 4,
+    "desc": "休宁县",
+    "longitude": 118.04505197375154
+  },
+  {
+    "latitude": 29.811790409464237,
+    "name": "38天官府",
+    "icon": "../png/1.png",
+    "index": 5,
+    "desc": "休宁县",
+    "longitude": 118.0456154840811
+  },
+  {
+    "latitude": 29.812248434477645,
+    "name": "37三天门",
+    "icon": "../png/9.png",
+    "index": 6,
+    "desc": "休宁县",
+    "longitude": 118.04530078269039
+  },
+  {
+    "latitude": 29.812248294366192,
+    "name": "36财神殿",
+    "icon": "../png/8.png",
+    "index": 7,
+    "desc": "休宁县",
+    "longitude": 118.04483105904438
+  },
+  {
+    "latitude": 29.812624359712068,
+    "name": "35香炉峰",
+    "icon": "../png/7.png",
+    "index": 8,
+    "desc": "../png/7.png",
+    "longitude": 118.04444213282954
+  },
+  {
+    "latitude": 29.812303334101916,
+    "name": "34二天门",
+    "icon": "../png/6.png",
+    "index": 9,
+    "desc": "休宁县",
+    "longitude": 118.0450404604016
+  },
+  {
+    "latitude": 29.81228579224323,
+    "name": "33碧莲池",
+    "icon": "../png/5.png",
+    "index": 10,
+    "desc": "休宁县",
+    "longitude": 118.04533910315487
+  },
+  {
+    "latitude": 29.812468662752227,
+    "name": "31象鼻岩",
+    "icon": "../png/4.png",
+    "index": 11,
+    "desc": "休宁县",
+    "longitude": 118.0453554282964
+  },
+  {
+    "latitude": 29.81255479089252,
+    "name": "30重修真仙洞府碑记",
+    "icon": "../png/3.png",
+    "index": 12,
+    "desc": "重修真仙洞府碑记",
+    "longitude": 118.04567919452116
+  },
+  {
+    "latitude": 29.812236782818093,
+    "name": "29玄妙之门",
+    "icon": "../png/2.png",
+    "index": 13,
+    "desc": "休宁县",
+    "longitude": 118.04597098450854
+  },
+  {
+    "latitude": 29.812287156010385,
+    "name": "28圆通岩",
+    "icon": "../png/1.png",
+    "index": 14,
+    "desc": "圆通岩",
+    "longitude": 118.04616012829057
+  },
+  {
+    "latitude": 29.8124044649892,
+    "name": "27碧霞灵应宫",
+    "icon": "../png/9.png",
+    "index": 15,
+    "desc": "碧霞灵应宫",
+    "longitude": 118.04582790295771
+  },
+  {
+    "latitude": 29.812512975521035,
+    "name": "26八仙洞",
+    "icon": "../png/8.png",
+    "index": 16,
+    "desc": "八仙洞",
+    "longitude": 118.0459468217552
+  },
+  {
+    "latitude": 29.812807090790564,
+    "name": "25一天门",
+    "icon": "../png/7.png",
+    "index": 17,
+    "desc": "一天门",
+    "longitude": 118.0458239270384
+  },
+  {
+    "latitude": 29.812755501373378,
+    "name": "24雷霆纠罚司",
+    "icon": "../png/6.png",
+    "index": 18,
+    "desc": "雷霆纠罚司",
+    "longitude": 118.0457771141682
+  },
+  {
+    "latitude": 29.81269022549222,
+    "name": "23寿字岩",
+    "icon": "../png/5.png",
+    "index": 19,
+    "desc": "寿字岩",
+    "longitude": 118.04614934567905
+  },
+  {
+    "latitude": 29.812720606055123,
+    "name": "22忠烈岩",
+    "icon": "../png/4.png",
+    "index": 20,
+    "desc": "忠烈岩",
+    "longitude": 118.04625169205417
+  },
+  {
+    "latitude": 29.812719724828323,
+    "name": "21栖真岩",
+    "icon": "../png/3.png",
+    "index": 21,
+    "desc": "栖真岩",
+    "longitude": 118.04642545959257
+  },
+  {
+    "latitude": 29.8129840846203,
+    "name": "20永乐古道",
+    "icon": "../png/2.png",
+    "index": 22,
+    "desc": "永乐古道",
+    "longitude": 118.0467250401777
+  },
+  {
+    "latitude": 29.812843013711035,
+    "name": "19状元",
+    "icon": "../png/1.png",
+    "index": 23,
+    "desc": "状元",
+    "longitude": 118.04797948996543
+  },
+  {
+    "latitude": 29.813089817455623,
+    "name": "18文昌帝君",
+    "icon": "../png/9.png",
+    "index": 24,
+    "desc": "文昌帝君",
+    "longitude": 118.04788038395473
+  },
+  {
+    "latitude": 29.813036205735646,
+    "name": "17梦真桥",
+    "icon": "../png/8.png",
+    "index": 25,
+    "desc": "梦真桥",
+    "longitude": 118.04782298816131
+  },
+  {
+    "latitude": 29.812227694711815,
+    "name": "16张三丰修行得道处",
+    "icon": "../png/7.png",
+    "index": 26,
+    "desc": "张三丰修行得道处",
+    "longitude": 118.04852403573476
+  },
+  {
+    "latitude": 29.81234637317637,
+    "name": "15洞天福地",
+    "icon": "../png/6.png",
+    "index": 27,
+    "desc": "洞天福地",
+    "longitude": 118.0483386172302
+  },
+  {
+    "latitude": 29.813358783622444,
+    "name": "14望仙楼",
+    "icon": "../png/5.png",
+    "index": 28,
+    "desc": "望仙楼",
+    "longitude": 118.04857586136696
+  },
+  {
+    "latitude": 29.813690891548262,
+    "name": "13撑腰棍",
+    "icon": "../png/4.png",
+    "index": 29,
+    "desc": "撑腰棍",
+    "longitude": 118.0489959179924
+  },
+  {
+    "latitude": 29.81381974839858,
+    "name": "12渐入仙关亭",
+    "icon": "../png/3.png",
+    "index": 30,
+    "desc": "渐入仙关亭",
+    "longitude": 118.04922067915885
+  },
+  {
+    "latitude": 29.814127310297238,
+    "name": "11云水亭",
+    "icon": "../png/2.png",
+    "index": 31,
+    "desc": "云水亭",
+    "longitude": 118.0492540796301
+  },
+  {
+    "latitude": 29.81485187311392,
+    "name": "10海天一望亭",
+    "icon": "../png/1.png",
+    "index": 32,
+    "desc": "海天一望亭",
+    "longitude": 118.0497220728346
+  },
+  {
+    "latitude": 29.81511814388016,
+    "name": "9松月亭",
+    "icon": "../png/9.png",
+    "index": 33,
+    "desc": "松月亭",
+    "longitude": 118.05087319848444
+  },
+  {
+    "latitude": 29.815044855295998,
+    "name": "8瞻敬亭",
+    "icon": "../png/8.png",
+    "index": 34,
+    "desc": "瞻敬亭",
+    "longitude": 118.05162266631989
+  },
+  {
+    "latitude": 29.814891248350158,
+    "name": "7凌风亭",
+    "icon": "../png/7.png",
+    "index": 35,
+    "desc": "凌风亭",
+    "longitude": 118.05302485680198
+  },
+  {
+    "latitude": 29.815646278381752,
+    "name": "6中和亭",
+    "icon": "../png/6.png",
+    "index": 36,
+    "desc": "中和亭",
+    "longitude": 118.05402000464223
+  },
+  {
+    "latitude": 29.817278828768515,
+    "name": "5登高亭",
+    "icon": "../png/5.png",
+    "index": 37,
+    "desc": "登高峰",
+    "longitude": 118.05415480193118
+  },
+  {
+    "latitude": 29.818406843895914,
+    "name": "4环峰秀亭",
+    "icon": "../png/4.png",
+    "index": 38,
+    "desc": "环峰秀亭",
+    "longitude": 118.05426265153864
+  },
+  {
+    "latitude": 29.818971832908645,
+    "name": "3步云亭",
+    "icon": "../png/3.png",
+    "index": 39,
+    "desc": "烟雾缭绕",
+    "longitude": 118.05480799275999
+  },
+  {
+    "latitude": 29.821737846666302,
+    "name": "2登封桥",
+    "icon": "../png/2.png",
+    "index": 40,
+    "desc": "登封亭",
+    "longitude": 118.05759802076868
+  },
+  {
+    "latitude": 29.82246950470179,
+    "name": "1登封桥",
+    "icon": "../png/1.png",
+    "index": 41,
+    "desc": "007乡道",
+    "longitude": 118.05694228858637
+  }
+]

@@ -1,0 +1,265 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <style>
+        body, html {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            font-family: "微软雅黑";
+        }
+
+        #allmap {
+            height: 800px;
+            width: 100%;
+        }
+
+        #r-result {
+            width: 100%;
+            font-size: 14px;
+        }
+    </style>
+    <script src="../js/jquery.js"></script>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=NhyogeLm7ljcGBn1E62vGmwyPXT5okqY"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/LuShu/1.2/src/LuShu_min.js"></script>
+    <title>城市名定位</title>
+</head>
+<body>
+<div id="allmap"></div>
+<div id="r-result">
+    经度: <input id="longitude" type="text" style="width:100px; margin-right:10px;"/>
+    纬度: <input id="latitude" type="text" style="width:100px; margin-right:10px;"/>
+    <input type="button" value="查询" onclick="theLocation()"/>
+    <button id="1r" style="background-color: #28c5ec">route-1</button>
+    <button id="2r" style="background: #FFDD55!important;">route-2</button>
+    <button id="3r" style="background: #0066FF!important;">route-3</button>
+    <button id="4r" style="background: #668800!important;">route-4</button>
+    <button id="5r" style="background: #A42D00!important;">route-5</button>
+    <button id="6r" style="background: #A42D00!important;">route-6</button>
+
+    <button id="run" style="background: #FF7744 !important;">开始</button>
+    <button id="stop" style="background: #FF7744 !important;">停止</button>
+    <button id="pause" style="background: #FF7744 !important;">暂停</button>
+    <button id="hide" style="background: #FF7744 !important;">隐藏信息窗口</button>
+    <button id="show" style="background: #FF7744 !important;">展示信息窗口</button>
+</div>
+</body>
+</html>
+
+
+<script type="text/javascript">
+    // 百度地图API功能
+    var map = new BMap.Map("allmap");
+    map.centerAndZoom(new BMap.Point(118.04797948996543, 29.812843013711035), 25);
+    map.enableScrollWheelZoom(true);
+    var polyline1;
+    var polyline2;
+    var polyline3;
+    var polyline4;
+    var polyline5;
+    var polyline6;
+    var lushu;
+    var point = [];
+    var points = [];
+    var icon = new BMap.Icon('../png/cz2.gif', new BMap.Size(100, 218), {anchor: new BMap.Size(15, 100)});
+    icon.setImageSize(new BMap.Size(50, 109))
+
+    var icon1 = new BMap.Icon('../png/blk1.png', new BMap.Size(50,50), {anchor: new BMap.Size(15, 80)});
+    icon1.setImageSize(new BMap.Size(50, 50))
+
+    var craeteLocation = function () {
+        $.getJSON("../json/routeLocation.json", function (data) {
+            $.each(data, function (infoIndex, info) {
+                var longitude = info['longitude'];
+                var altitude = info['latitude'];
+
+                var myIcon = new BMap.Icon(info['icon'], new BMap.Size(30, 30));
+                myIcon.setImageSize(new BMap.Size(30, 30));
+
+                var new_point = new BMap.Point(longitude, altitude);
+                var marker = new BMap.Marker(new_point, {icon: myIcon});  // 创建标注
+                map.addOverlay(marker);              // 将标注添加到地图中
+
+                var label = new BMap.Label(info['name'], {offset: new BMap.Size(20, -5)});
+                label.setStyle({color: "red", fontSize: "12px", border: "none", background: "#EEECDC"});
+                marker.setLabel(label);
+            });
+
+        });
+    }
+
+    craeteLocation();
+
+    $("#1r").click(function () {
+        createRoute('1', '#28c5ec', lushu);
+    });
+    $("#2r").click(function () {
+        createRoute('2', '#FFDD55')
+    });
+    $("#3r").click(function () {
+        createRoute('3', '#0066FF')
+    });
+    $("#4r").click(function () {
+        createRoute('4', '#668800')
+    });
+    $("#5r").click(function () {
+        createRoute('5', '#A42D00')
+    });
+    $("#6r").click(function () {
+        createRoute('6', '#A42D00')
+    });
+
+    var createRoute = function (name, color, lushu) {
+        point = [];
+        var locations = [];
+
+//        map.clearOverlays();
+
+        $.ajax({
+            url: "../json/routeLocation.json",
+            type: "GET",
+            async: false,
+            dataType: "json",
+            success: function (result) {
+                $.each(result, function (infoIndex2, info2) {
+                    var location = {};
+                    var longitude = info2['longitude'];
+                    var altitude = info2['latitude'];
+                    var index = info2['index'];
+                    location.index = index;
+                    location.longitude = longitude;
+                    location.latitude = altitude;
+                    locations.push(location);
+                });
+            }
+        });
+
+        $.ajax({
+            url: "../json/route.json",
+            type: "GET",
+            dataType: "json",
+            async: false,
+            success: function (result) {
+                $.each(result, function (infoIndex, info) {
+                    if (info['name'] == name) {
+                        var ls = info['location'];
+                        ls = ls.split('|');
+                        for (var j = 0; j < locations.length; j++) {
+                            for (var i = 0; i < ls.length; i++) {
+                                if (ls[i] == locations[j].index) {
+                                    var newPoint = new BMap.Point(locations[j].longitude, locations[j].latitude);
+                                    point.push(newPoint);
+                                }
+                            }
+                        }
+                    }
+                });
+
+//                var drv = new BMap.WalkingRoute(point[0], {
+//                    onSearchComplete: function (res) {
+//                        if (drv.getStatus() == BMAP_STATUS_SUCCESS) {
+//                            var plan = res.getPlan(0);
+//                            for (var j = 0; j < plan.getNumRoutes(); j++) {
+//                                var route = plan.getRoute(j);
+//                                points = points.concat(route.getPath());
+//                            }
+//                            map.addOverlay(new BMap.Polyline(points, {strokeColor: '#111'}));
+//                            map.setViewport(points);
+//                        }
+//                    }
+//                });
+//                for(var po = 1; po < point.length; po ++){
+//                    drv.search(point[po-1], point[po]);
+//                    drv.disableAutoViewport();
+//                }
+
+                if (name == '1') {
+                    map.removeOverlay(polyline2);
+                    map.removeOverlay(polyline3);
+                    map.removeOverlay(polyline4);
+                    map.removeOverlay(polyline5);
+                    map.removeOverlay(polyline6);
+                    polyline1 = new BMap.Polyline(point, {strokeColor: color, strokeWeight: 2, strokeOpacity: 0.5});   //创建折线
+                    map.addOverlay(polyline1);
+                } else if (name == '2') {
+                    map.removeOverlay(polyline1);
+                    map.removeOverlay(polyline3);
+                    map.removeOverlay(polyline4);
+                    map.removeOverlay(polyline5);
+                    map.removeOverlay(polyline6);
+                    polyline2 = new BMap.Polyline(point, {strokeColor: color, strokeWeight: 2, strokeOpacity: 0.5});   //创建折线
+                    map.addOverlay(polyline2);
+                } else if (name == '3') {
+                    map.removeOverlay(polyline2);
+                    map.removeOverlay(polyline2);
+                    map.removeOverlay(polyline4);
+                    map.removeOverlay(polyline5);
+                    map.removeOverlay(polyline6);
+                    polyline3 = new BMap.Polyline(point, {strokeColor: color, strokeWeight: 2, strokeOpacity: 0.5});   //创建折线
+                    map.addOverlay(polyline3);
+                } else if (name == '4') {
+                    map.removeOverlay(polyline1);
+                    map.removeOverlay(polyline2);
+                    map.removeOverlay(polyline3);
+                    map.removeOverlay(polyline5);
+                    map.removeOverlay(polyline6);
+                    polyline4 = new BMap.Polyline(point, {strokeColor: color, strokeWeight: 2, strokeOpacity: 0.5});   //创建折线
+                    map.addOverlay(polyline4);
+                } else if (name == '5') {
+                    map.removeOverlay(polyline1);
+                    map.removeOverlay(polyline2);
+                    map.removeOverlay(polyline3);
+                    map.removeOverlay(polyline4);
+                    map.removeOverlay(polyline6);
+                    polyline5 = new BMap.Polyline(point, {strokeColor: color, strokeWeight: 2, strokeOpacity: 0.5});   //创建折线
+                    map.addOverlay(polyline5);
+                } else if (name == '6') {
+                    map.removeOverlay(polyline1);
+                    map.removeOverlay(polyline2);
+                    map.removeOverlay(polyline3);
+                    map.removeOverlay(polyline4);
+                    map.removeOverlay(polyline5);
+                    polyline6 = new BMap.Polyline(point, {strokeColor: color, strokeWeight: 2, strokeOpacity: 0.5});   //创建折线
+                    map.addOverlay(polyline6);
+                }
+            }
+        });
+    }
+
+    $("#run").click(function () {
+        lushu = new BMapLib.LuShu(map, point, {
+            defaultContent: "",//"从天安门到百度大厦"
+            autoView: true,//是否开启自动视野调整，如果开启那么路书在运动过程中会根据视野自动调整
+            icon: new BMap.Icon('http://developer.baidu.com/map/jsdemo/img/car.png', new BMap.Size(52, 26), {anchor: new BMap.Size(27, 20)}),
+//            icon: icon,
+            speed: 50,
+            enableRotation: true,//是否设置marker随着道路的走向进行旋转
+        });
+
+       var lushu1 = new BMapLib.LuShu(map, point, {
+            defaultContent: "",//"从天安门到百度大厦"
+            autoView: true,//是否开启自动视野调整，如果开启那么路书在运动过程中会根据视野自动调整
+//            icon: new BMap.Icon('http://developer.baidu.com/map/jsdemo/img/car.png', new BMap.Size(52, 26), {anchor: new BMap.Size(27, 20)}),
+            icon: icon,
+            speed: 50,
+            enableRotation: false,//是否设置marker随着道路的走向进行旋转
+        });
+//        lushu.start();
+        lushu1.start();
+    });
+    $("#stop").click(function () {
+        lushu.stop();
+    });
+    $("#pause").click(function () {
+        lushu.pause();
+    });
+    $("#hide").click(function () {
+        lushu.hideInfoWindow();
+    });
+    $("#show").click(function () {
+        lushu.showInfoWindow();
+    });
+
+</script>
